@@ -1,3 +1,18 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #dc2626;
+    --accent-color: #16a34a;
+    --background-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --board-wood: #8b4513;
+    --bullseye-red: #dc2626;
+    --bullseye-green: #16a34a;
+    --glass-background: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +21,17 @@
 
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: #0f172a;
-    color: #f8fafc;
+    background-color: var(--background-color);
+    color: var(--text-primary);
     min-height: 100vh;
     line-height: 1.5;
+}
+
+.glass-effect {
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
 }
 
 .game-wrapper {
@@ -19,31 +41,62 @@ body {
 }
 
 .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     margin-bottom: 30px;
 }
 
-.dartboard {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.game-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 24px;
+}
+
+.game-board {
     position: relative;
-    background: #8b4513;
-    margin: 0 auto;
+    aspect-ratio: 1;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.dartboard {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--board-wood);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.3);
 }
 
 .bullseye {
-    width: 30px;
-    height: 30px;
+    width: 10%;
+    height: 10%;
+    left: 45%;
+    top: 45%;
+    background: var(--bullseye-red);
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: #dc2626;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: bold;
+    z-index: 5;
 }
